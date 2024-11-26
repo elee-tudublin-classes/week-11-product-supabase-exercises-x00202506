@@ -16,7 +16,7 @@ supabase: Client = create_client(db_url, db_key)
 # get all products
 def dataGetProducts():
     response = (supabase.table("product")
-                .select("*")
+                .select("*, category(name)")
                 .order("title", desc=False)
                 .execute()
     )
@@ -50,6 +50,7 @@ def dataUpdateProduct(product: Product) :
 def dataAddProduct(product: Product) :
     response = (
         supabase.table("product")
+        .select("*, category(name)")
         .insert(product.dict()) # convert product object to dict - required by Supabase
         .execute()
     )
