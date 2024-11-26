@@ -47,6 +47,7 @@
                         {% include "/product/partials/product_list.html" ignore missing with context %}
                     </tbody>
                 </table>
+
                 
                 <!-- Add Product Form -->
                 <form class="ms-2 me-auto" hx-post="/product/" hx-target="#productList" hx-swap="beforeend">
@@ -54,7 +55,17 @@
                         <legend>Add a new product</legend>
                         <div class="mb-3">
                             <label for="category_id" class="form-label">Category</label>
-                            <input type="text" class="form-control" id="category_id" name="category_id" required>
+                                            <!-- Add Category Select Dropdown -->
+                            <div class="mb-3">
+                                <label for="categorySelect" class="form-label"></label>
+                                <select class="form-select" id="categorySelect" name="category_id" aria-label="Category select">
+                                <option selected disabled>Select Category</option>
+                                {% for category in categories %}
+                                    <option value="{{ category.id }}">{{ category.name }}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                            
                         </div>
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>

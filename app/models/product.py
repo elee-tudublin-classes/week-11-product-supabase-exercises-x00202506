@@ -6,7 +6,7 @@ from typing import Optional
 
 class Product(BaseModel):
     _id: int # Pydantic excludes variables which begin with an underscore. 
-    category_id: int
+    category_id: str
     title: str
     description: str
     price: float
